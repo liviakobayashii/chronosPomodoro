@@ -12,7 +12,8 @@ export function Heading() {
         <button className="bg-transparent">
           <Icon icon="material-symbols:timer-outline" className="text-7xl" />
         </button>
-        <p className="font-bold text-5xl ">Chronos</p>
+        <h1 className="font-bold ">Chronos</h1>
+        
       </div>
       <Navbar />
     </section>
