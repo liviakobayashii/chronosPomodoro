@@ -1,5 +1,6 @@
 import CyclesView from "@/components/cycles/view/cycles-view";
 import DefaultButton from "@/components/default-button";
+import Footer from "@/components/footer/footer";
 import TaskForm from "@/components/task-form/task-form";
 
 export default function HomeView() {
@@ -9,7 +10,7 @@ export default function HomeView() {
         <TaskForm />
         <CyclesView />
         <DefaultButton fullWidth />
-
+        <Footer/>
     </>
     )
 }
