@@ -13,7 +13,7 @@ export default function DefaultButton({ onClick, fullWidth }: DefaultButtonProps
       onClick={onClick}
       size="lg"
       className={cn(
-        "filter hover:brightness-75 text-black",
+        "filter hover:brightness-75 text-black my-5",
         fullWidth && "w-full"
       )}
     >

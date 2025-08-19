@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-center items-center gap-3  ">
+    <nav className="flex justify-center items-center gap-7 mt-5">
       <button className="p-3 rounded-lg bg-[#0ba170] text-black">
         <Icon
           icon="material-symbols:home-outline-rounded"
