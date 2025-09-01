@@ -1,23 +1,30 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import NavbarItem from "./navbar-item";
 
 export default function Navbar() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  const isLight = theme === "light"
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleThemeChange = () => setTheme(theme === "dark" ? "light" : "dark");
+
+  if (!mounted) return null;
   return (
     <nav className="flex justify-center items-center gap-7 mt-5">
-      <button className="p-3 rounded-lg bg-[#0ba170] text-black">
-        <Icon
-          icon="material-symbols:home-outline-rounded"
-          className="text-4xl"
-        />
-      </button>
-      <button className="p-3 rounded-lg bg-[#0ba170] text-black">
-        <Icon icon="pepicons-pop:rewind-time" className="text-4xl" />
-      </button>
-      <button className="p-3 rounded-lg bg-[#0ba170] text-black">
-        <Icon icon="solar:settings-outline" className="text-4xl" />
-      </button>
-      <button className="p-3 rounded-lg bg-[#0ba170] text-black">
-        <Icon icon="solar:sun-outline" className="text-4xl" />
-      </button>
+
+      <NavbarItem icon="material-symbols:home-outline-rounded" title="Página inicial" />
+      <NavbarItem icon="pepicons-pop:rewind-time" title="Ver histórico" />
+      <NavbarItem icon="solar:settings-outline" title="Configurações" />
+      <NavbarItem onClick={(e) => {
+        e.preventDefault();
+        handleThemeChange();
+      }} icon={isLight ? "solar-moon-outline" : "solar:sun-outline"} title="Mudar tema" />
     </nav>
   );
 }
