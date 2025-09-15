@@ -1,9 +1,20 @@
-export default function TaskForm() {
+import { forwardRef } from "react"
+
+const TaskForm = forwardRef<HTMLInputElement, object>((_, ref) => {
   return (
-    <form className="flex flex-col justify-center items-center gap-2">
+    <>
       <label htmlFor="taskId">Task:</label>
-      <input type="text" id="taskId" className="border-b-2 border-[#0ba170]" />
+      <input
+        type="text"
+        id="taskId"
+        className="border-b-2 border-primary"
+        ref={ref}
+      />
       <p className="mt-5">Nesse ciclo foque por 25min</p>
-    </form>
-  );
-}
+    </>
+  )
+})
+
+TaskForm.displayName = "TaskForm"
+
+export default TaskForm
