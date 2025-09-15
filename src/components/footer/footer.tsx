@@ -1,7 +1,7 @@
 export default function Footer() {
-    return(
+    return (
         <footer className="flex flex-col gap-2 text-[14px] text-center ">
-            <a href="https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro" target="_blank" className="hover:text-[#0ba170] duration-200 transition-all">Entenda a técnica pomodoro</a>
+            <a href="https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro" target="_blank" className="hover:text-primary duration-200 transition-all">Entenda a técnica pomodoro</a>
             <p>Chronos Pomodoro &copy; {new Date().getFullYear()} - Desenvolvido por Livia Kobayashi</p>
         </footer>
     )
