@@ -5,6 +5,7 @@ import Footer from "@/components/footer/footer";
 import TaskForm from "@/components/task-form/task-form";
 import { useTaskContext } from "@/hooks/useTaskContext";
 import type { Task } from "@/types/task-state";
+import FormatSecondsToMinutes from "@/utils/format-seconds-to-minutes";
 import getNextCycle from "@/utils/get-next-cycle";
 import GetNextCycleType from "@/utils/get-next-cycle-type";
 import { useRef, type FormEvent } from "react";
@@ -46,7 +47,7 @@ export default function HomeView() {
                 activeTask: newTask,
                 currentCycle: nextCycle,
                 secondsRemaining,
-                formattedSecondsRemaining: "00:00",
+                formattedSecondsRemaining: FormatSecondsToMinutes(secondsRemaining),
                 tasks: [...prevState.tasks, newTask]
             }
         })
