@@ -57,7 +57,7 @@ export default function HomeView() {
         <form onSubmit={handleCreateNewTask} className="flex flex-col justify-center items-center gap-2">
             <Countdown />
             <TaskForm ref={taskNameInput} />
-            <CyclesView />
+            {state.currentCycle > 0 && <CyclesView />}
             <DefaultButton fullWidth />
             <Footer />
         </form>
