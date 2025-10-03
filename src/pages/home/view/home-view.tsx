@@ -3,16 +3,16 @@ import CyclesView from "@/components/cycles/view/cycles-view";
 import DefaultButton from "@/components/default-button";
 import Footer from "@/components/footer/footer";
 import TaskForm from "@/components/task-form/task-form";
+import { TaskActionTypes } from "@/contexts/task-actions";
 import { useTaskContext } from "@/hooks/useTaskContext";
 import type { Task } from "@/types/task-state";
-import FormatSecondsToMinutes from "@/utils/format-seconds-to-minutes";
 import getNextCycle from "@/utils/get-next-cycle";
 import GetNextCycleType from "@/utils/get-next-cycle-type";
 import { useRef, type FormEvent } from "react";
 
 export default function HomeView() {
     const taskNameInput = useRef<HTMLInputElement>(null)
-    const { state, setState } = useTaskContext()
+    const { state, dispatch } = useTaskContext()
 
     const nextCycle = getNextCycle(state)
     const nextCycleType = GetNextCycleType(nextCycle)
@@ -38,39 +38,14 @@ export default function HomeView() {
             duration: state.config[nextCycleType],
             type: nextCycleType
         }
-        const secondsRemaining = newTask.duration * 60
 
-        setState(prevState => {
-            return {
-                ...prevState,
-                config: { ...prevState.config },
-                activeTask: newTask,
-                currentCycle: nextCycle,
-                secondsRemaining,
-                formattedSecondsRemaining: FormatSecondsToMinutes(secondsRemaining),
-                tasks: [...prevState.tasks, newTask]
-            }
-        })
+        dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
+
     }
 
     const handleInterruptTask = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        dispatch({ type: TaskActionTypes.INTERRUPT_TASK })
         e.preventDefault()
-        setState(prevState => {
-            return {
-                ...prevState,
-                activeTask: null,
-                secondsRemaining: 0,
-                formattedSecondsRemaining: "00:00",
-                tasks: prevState.tasks.map((task) => {
-                    if (prevState.activeTask && prevState.activeTask.id === task.id) {
-                        return { ...task, interruptDate: Date.now() }
-                    }
-                    return task
-                })
-
-            }
-        })
-
     }
 
     return (
